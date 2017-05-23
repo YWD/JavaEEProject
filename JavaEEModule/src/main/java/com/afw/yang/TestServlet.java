@@ -25,7 +25,7 @@ public class TestServlet extends HttpServlet {
         resp.setContentType("text/html");
         resp.setCharacterEncoding("utf-8");
 
-        // TODO: 2017/5/12 lib jar ceshi
+        // TODO: 2017/5/12 lib jar
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("name", "jack");
         jsonObject.put("age", 23);
