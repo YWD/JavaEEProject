@@ -1,5 +1,6 @@
 package com.afw.yang.utils;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -19,11 +20,11 @@ public class JDBCUtil {
     static {
         try {
             // 获取文件并读取数据
-            InputStream inputStream = JDBCUtil.class.getClassLoader().getResourceAsStream("jdbcinfo.properties");
+            InputStream inputStream = JDBCUtil.class.getResourceAsStream("/jdbcinfo.properties");
             Properties properties = new Properties();
             properties.load(inputStream);
 
-            driver = properties.getProperty("jdbc.dirver");
+            driver = properties.getProperty("jdbc.driver");
             url = properties.getProperty("jdbc.url");
             user = properties.getProperty("jdbc.user");
             password = properties.getProperty("jdbc.password");
@@ -46,6 +47,29 @@ public class JDBCUtil {
 
 
     public static void closeResources(ResultSet resultSet, Statement statement, Connection conn) {
-
+        try{
+            if (resultSet != null) {
+                resultSet.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        } finally {
+            try{
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (conn != null) {
+                        conn.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

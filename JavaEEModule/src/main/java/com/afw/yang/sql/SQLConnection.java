@@ -1,5 +1,6 @@
 package com.afw.yang.sql;
 
+import com.afw.yang.utils.C3P0Util;
 import com.afw.yang.utils.JDBCUtil;
 
 import java.sql.*;
@@ -16,7 +17,8 @@ public class SQLConnection {
             Class.forName("com.mysql.jdbc.Driver");
             // 获得连接
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/itheima", "root", "123456");*/
-           Connection conn = JDBCUtil.getConnection();
+//           Connection conn = JDBCUtil.getConnection();
+            Connection conn = C3P0Util.getConnection();
             // 获得语句执行者
             Statement statement = conn.createStatement();
             // 执行语句
