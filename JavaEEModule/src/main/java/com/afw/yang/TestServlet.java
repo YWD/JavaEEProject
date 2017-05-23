@@ -1,4 +1,4 @@
-package main.java.com.afw.yang;
+package com.afw.yang;
 
 import net.sf.json.JSONObject;
 
